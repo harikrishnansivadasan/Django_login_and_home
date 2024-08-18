@@ -5,7 +5,7 @@ from django.http import HttpResponse
 def Login(request):
     return render(request,'login.html')
 
-def Home(request):
+def home(request):
     return render(request,'home.html')
 
 def Signup(request):

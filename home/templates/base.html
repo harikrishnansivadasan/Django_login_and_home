@@ -1,9 +1,9 @@
 
-{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
+  {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %} {% endblock %}</title>
@@ -23,30 +23,33 @@
 <body>
     <header >
         <nav class="navbar navbar-expand-lg navbar1">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="{% url 'home' %}">Marvel</a>
+            <div class="container-fluid col-md-11">
+              <a class="navbar-brand" href="">Marvel</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse " id="navbarNav">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link active" style="color: white;" aria-current="page" href="{% url 'about' %}">About</a>
+                    <a class="nav-link active" style="color: white;" aria-current="page" href="">About</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'booking' %}">Hire ME</a>
+                    <a class="nav-link" href="">Hire ME</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'contact' %}">contact</a>
+                    <a class="nav-link" href="">contact</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'department' %}">Guns</a>
+                    <a class="nav-link" href="">Guns</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'doctors' %}">Comics</a>
+                    <a class="nav-link" href="">Comics</a>
                   </li>
                 </ul>
               </div>
+            </div>
+            <div class="col-md-1">
+              <button class="btn bg-danger">Log Out</button>
             </div>
           </nav>
     </header>
