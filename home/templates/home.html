@@ -1,11 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>home</title>
-</head>
-<body>
-    <h1>HOME PAGE</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %} Deadpools {% endblock %}
+
+{% block content %} 
+{% load static%}
+
+
+<section class="text-center">
+    
+    <div class="card m-2 text-center" style="width: 18rem; display: inline-block;">
+        <img class="card-img-top" style="height: 250px; object-fit: contain;" src="{% static 'images/Deadpool.jpg' %}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{doc.doc_name}}</h5>
+          <p class="card-text">{{doc.doc_spec}}</p>
+          <a href="#" class="btn btn-primary">{{doc.dep_name}}</a>
+        </div>
+    </div>
+     
+</section>
+
+
+{% endblock %}
