@@ -29,7 +29,13 @@ a{
     text-decoration: none;
 }
 
+.btn-custom{
+    width: 50%;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(90deg, rgba(36,0,0,1) 0%, rgba(154,14,14,1) 35%, rgba(255,0,0,1) 100%);
 
+}
 .btn-danger{
     width: 100%;
     border: none;
