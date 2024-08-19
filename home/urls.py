@@ -3,8 +3,10 @@ from .import views
 
 urlpatterns = [
     
-    path('home/', views.home,name='home'),
     path('',views.Login,name='login'),
-    path('signup',views.Signup,name='signup')
+    path('login',views.Login,name='login'),
+    path('home/', views.home,name='home'),
+    path('signup',views.Signup,name='signup'),
+    path('logout',views.logout_page,name='logout')
 
     ]

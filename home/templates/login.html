@@ -18,11 +18,11 @@
                 <h4 class="text-center text">Login</h4>
                 <div class="mb-3 mt-5">
                   <label for="exampleInputEmail1" class="form-label text">Email Id</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
                 </div>
                 <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label text">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1">
+                  <input type="password" class="form-control" id="exampleInputPassword1" name="password">
                   <div id="emailHelp" class=" mt-3 text">Forget password ?</div>
                   <a href="{% url 'signup' %}">
                     <button class="btn btn-custom mt-5" type="button">Sign Up</button>

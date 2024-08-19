@@ -49,7 +49,10 @@
               </div>
             </div>
             <div class="col-md-1">
-              <button class="btn bg-danger">Log Out</button>
+              <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button class="btn bg-danger">Log Out</button>
+              </form>
             </div>
           </nav>
     </header>
