@@ -28,14 +28,23 @@
                     <label for="exampleInputPassword1" class="form-label text">Confirm Password</label>
                     <input type="password" class="form-control" id="exampleInputPassword1" name="confirmpassword">
                 </div>
+                {% if messages %}
+                <div>
+                  {% for message in messages %}
+                    <p style="color:red;">{{ message }}</p>
+                  {% endfor %}
+                </div>
+                {% endif %}
                 <div class="mb-3">
                     <a href="{% url 'login' %}">
                         <button class="btn btn-shift " type="button">Log In</button>
                     </a>
                 </div>
+                
               
-                <button type="submit" class="btn btn-danger mt-3">Sign Up</button>
+                <button type="submit" class="btn btn-danger mt-2">Sign Up</button>
               </form>
+              
         </div>
 
 

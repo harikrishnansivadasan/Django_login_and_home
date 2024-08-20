@@ -30,9 +30,17 @@
                 
                 
                 </div>
+                {% if messages %}
+                <div>
+                  {% for message in messages %}
+                    <p style="color:red;">{{ message }}</p>
+                  {% endfor %}
+                </div>
+                {% endif %}
               
                 <button type="submit" class="btn btn-danger mt-5">Login</button>
               </form>
+              
         </div>
 
 
