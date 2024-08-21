@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import never_cache
 
 # Create your views here.
 def Login(request):
@@ -26,7 +27,7 @@ def Login(request):
     
     return render(request, 'login.html')
 
-
+@never_cache
 def home(request):  
     if 'username' in request.session:   
       return render(request,'home.html')
