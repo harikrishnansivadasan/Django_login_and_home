@@ -7,7 +7,9 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import never_cache
 
 # Create your views here.
+@never_cache
 def Login(request):
+
     if 'username' in request.session:
         return redirect(home)
     if request.method == 'POST':
@@ -61,7 +63,7 @@ def Signup(request):
         return render(request, 'signup.html', {'email': email})
     
     return render(request, 'signup.html')
-
+@never_cache
 def logout_page(request):
     if 'username' in request.session:
         request.session.flush()
