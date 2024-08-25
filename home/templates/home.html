@@ -9,70 +9,18 @@
 
 
 <section class="text-center">
+
+  {% for context in context %}
     
     <div class="card m-2 text-center" style="width: 18rem; display: inline-block;">
-        <img class="card-img-top" style="height: 250px; object-fit: contain;" src="{% static 'images/Deadpool.avif' %}" alt="Card image cap">
+        <img class="card-img-top" style="height: 250px; object-fit: contain;" src="{{context.image.url}}" alt="Card image cap">
         <div class="card-body">
-          <h5 class="card-title">Deadpool</h5>
+          <h5 class="card-title">{{context.name}}</h5>
           
         </div>
     </div>
-    <div class="card m-2 text-center" style="width: 18rem; display: inline-block;">
-      <img class="card-img-top" style="height: 250px; object-fit: contain;" src="{% static 'images/Babypool.png' %}" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Babypool</h5>
-        
-      </div>
-  </div>
-  <div class="card m-2 text-center" style="width: 18rem; display: inline-block;">
-    <img class="card-img-top" style="height: 250px; object-fit: contain;" src="{% static 'images/Dogpool.png' %}" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Dogpool</h5>
-      
-    </div>
-</div>
-<div class="card m-2 text-center" style="width: 18rem; display: inline-block;">
-  <img class="card-img-top" style="height: 250px; object-fit: contain;" src="{% static 'images/Headpool.png' %}" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Headpool</h5>
-    
-  </div>
-</div>
-<div class="card m-2 text-center" style="width: 18rem; display: inline-block;">
-  <img class="card-img-top" style="height: 250px; object-fit: contain;" src="{% static 'images/Kidpool.jpg' %}" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Kidpool</h5>
-    
-  </div>
-</div>
-<div class="card m-2 text-center" style="width: 18rem; display: inline-block;">
-  <img class="card-img-top" style="height: 250px; object-fit: contain;" src="{% static 'images/Ladypool.jpg' %}" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Ladypool</h5>
-    
-  </div>
-</div>
-<div class="card m-2 text-center" style="width: 18rem; display: inline-block;">
-  <img class="card-img-top" style="height: 250px; object-fit: contain;" src="{% static 'images/Venompool.jpg' %}" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Venompool</h5>
-    
-  </div>
-</div>
-<div class="card m-2 text-center" style="width: 18rem; display: inline-block;">
-  <img class="card-img-top" style="height: 250px; object-fit: contain;" src="{% static 'images/Roninpool.jpg' %}" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Roninpool</h5>
-    
-  </div>
-</div>
-<div class="card m-2 text-center" style="width: 18rem; display: inline-block;">
-  <img class="card-img-top" style="height: 250px; object-fit: contain;" src="{% static 'images/Nicepool.png' %}" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Nicepool</h5>
-    
-  </div>
-</div>
+  {% endfor %}
+     
      
 </section>
 

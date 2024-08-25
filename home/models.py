@@ -1,11 +1,11 @@
 from django.db import models
 
 # Create your models here.
-class MovieInfo(models.Model):
-    mail = models.EmailField(max_length=255)
-    password = models.IntegerField(null=True)
-    confirm_password = models.TextField(max_length=255)
+class Characters(models.Model):
+    name=models.CharField(max_length=100)
+    image=models.ImageField(upload_to='characters')
+    
 
     def __str__(self):
-        return f"{self.title} ({self.year}) ({self.description})"
+        return self.name
 
