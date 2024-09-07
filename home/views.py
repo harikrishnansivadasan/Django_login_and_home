@@ -31,10 +31,11 @@ def Login(request):
     return render(request, 'login.html')
 
 @never_cache
-def home(request):  
+def home(request): 
+    context1={'name':'Hari'} 
     context=Characters.objects.all()
     if 'username' in request.session:   
-      return render(request,'home.html',{'context':context})
+      return render(request,'home.html',{'context':context, 'context1':context1})
     return redirect(Login)
 
 
@@ -56,8 +57,8 @@ def Signup(request):
                     return redirect('login')
                 except Exception as e:
                     messages.error(request, 'Email is already registered.')
-            else:
-                messages.error(request, 'Email is already registered.')
+            # else:
+            #     messages.error(request, 'Email is already registered.')
         else:
             messages.error(request, 'Passwords do not match.')
 
@@ -65,6 +66,7 @@ def Signup(request):
         return render(request, 'signup.html', {'email': email})
     
     return render(request, 'signup.html')
+
 @never_cache
 def logout_page(request):
     if 'username' in request.session:
