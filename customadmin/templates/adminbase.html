@@ -17,6 +17,10 @@
         .navbar1 a{
             color: white;
         }
+        ul li{
+          text-decoration: none;
+        }
+
     </style>
     
 </head>
@@ -24,7 +28,7 @@
     <header >
         <nav class="navbar navbar-expand-lg navbar1">
             <div class="container-fluid col-md-11">
-              <a class="navbar-brand" href="">Marvel</a>
+              <a class="navbar-brand" href="{% url 'adminhome' %}">Marvel</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -56,6 +60,20 @@
             </div>
           </nav>
     </header>
+
+    <form action="" method="GET">
+      <div class="ms-6 p-4 input-group col-md-10">
+        <div class="form-outline col-md-7 me-3" data-mdb-input-init>
+          <input type="search" id="form1" name="q" placeholder="Type here" class="form-control" />
+          <!-- <label class="form-label" for="form1">Search</label> -->
+        </div>
+        <div class="col-md-4">
+          <button type="submit" class="btn btn-primary" data-mdb-ripple-init>
+            <i class="fas fa-search">Search</i>
+          </button>
+        </div>
+      </div>
+    </form>
 
     {% block content %} {% endblock %}
 

@@ -4,13 +4,16 @@
 {% block content %} 
 {%load static %}
 
+
 <table class="table table-bordered">
     <thead>
         <tr>
             <th>User Name</th>
             <th>Is Staff</th>
             <th>Email</th>
+            <th>SuperUser</th>
             <th>date_joined</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -19,7 +22,18 @@
             <td>{{ user.username }}</td>
             <td>{{ user.is_staff|yesno:"Yes,No" }}</td>
             <td>{{ user.email }}</td>
+            <td>{{user.is_superuser}}</td>
             <td>{{ user.date_joined }}</td>
+            <td>{% if superstatus is True %}
+                <ul>
+                    <li>UP</li>
+                    <li>Del</li>
+                </ul>
+                {% else %}
+                <span>No actions available</span>
+
+                {% endif %}
+            </td>
         </tr>
         {% endfor %}
     </tbody>

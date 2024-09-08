@@ -17,9 +17,10 @@ def admin_login(request):
         
         user = authenticate(request, username=email, password=password)
         superstatus=user.is_superuser
+        staffstatus=user.is_staff
         print(user,superstatus)
         
-        if user is not None and superstatus is True:
+        if user is not None and (superstatus is True or staffstatus is True):
             request.session['username']= email
             
             return redirect(admin_home)  # Redirect to the home page on successful login
@@ -31,8 +32,18 @@ def admin_login(request):
 @never_cache
 def admin_home(request):
     if 'username' in request.session:
+        user = User.objects.get(username=request.session.get('username'))
+        superstatus=user.is_superuser
 
-        users = User.objects.values('username', 'is_staff', 'email', 'date_joined')
-        return render(request,'adminhome.html',{'users':users})
+        query=request.GET.get('q','')
+        if query:
+            users=User.objects.filter(username__icontains=query).values('username', 'is_staff', 'email','is_superuser', 'date_joined')
+        else:
+            users = User.objects.values('username', 'is_staff', 'email','is_superuser', 'date_joined')
+
+        return render(request, 'adminhome.html', {'users': users, 'superstatus': superstatus, 'query': query})
     else:
-        return render(request,'adminlogin.html')
+        return render(request, 'adminlogin.html')
+        
+    
+    
