@@ -9,6 +9,7 @@
     <title>{% block title %} {% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static '/css/base.css' %}">
+    <script src="https://kit.fontawesome.com/17654315f2.js" crossorigin="anonymous"></script>
     <style>
         .navbar1 {
             background: linear-gradient(90deg, rgba(154,14,14,1) 0%, rgba(154,14,14,1) 35%, rgba(255,0,0,1) 100%);
@@ -20,6 +21,17 @@
         ul li{
           text-decoration: none;
         }
+        .custom-btn {
+          border: none;       /* Removes the border */
+          background: none;    /* Removes background color */
+          padding: 0;          /* Adjust padding if needed */
+          outline: none;       /* Removes any focus outline */
+          cursor: pointer;     /* Makes it clear that it's clickable */
+      }
+  
+      .custom-btn:focus {
+          outline: none;       /* Ensures no focus outline appears */
+      }
 
     </style>
     
@@ -53,7 +65,7 @@
               </div>
             </div>
             <div class="col-md-1">
-              <form action="{% url 'logout' %}" method="post">
+              <form action="{% url 'adminlogout' %}" method="post">
                 {% csrf_token %}
                 <button class="btn bg-danger">Log Out</button>
               </form>
@@ -61,21 +73,39 @@
           </nav>
     </header>
 
-    <form action="" method="GET">
-      <div class="ms-6 p-4 input-group col-md-10">
-        <div class="form-outline col-md-7 me-3" data-mdb-input-init>
-          <input type="search" id="form1" name="q" placeholder="Type here" class="form-control" />
-          <!-- <label class="form-label" for="form1">Search</label> -->
-        </div>
-        <div class="col-md-4">
-          <button type="submit" class="btn btn-primary" data-mdb-ripple-init>
-            <i class="fas fa-search">Search</i>
-          </button>
-        </div>
+    <div class="row">
+      <div class="col-md-10 d-flex align-items-center">
+        <form action="" method="GET" class="w-100">
+          <div class="ms-6 p-4 input-group d-flex justify-content-end">
+            <div class="form-outline me-3 w-75">
+              <input type="search" id="form1" name="q" placeholder="Type here" class="form-control" />
+            </div>
+            <div class="w-auto">
+              <button type="submit" class="btn btn-primary ms-4">
+                Search
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
-    </form>
+      <div class="col-md-2 d-flex align-items-center ">
+        {% if superstatus is True %}
+          <a href="{% url 'add' %}"><button class="btn btn-success">Add User</button></a>
+        {% endif %}
+      </div>
+    </div>
+    
+    
 
-    {% block content %} {% endblock %}
+          
+
+
+    
+    
+
+
+    {% block content %} 
+    {% endblock %}
 
 
 
@@ -85,7 +115,7 @@
 
 
 
-
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

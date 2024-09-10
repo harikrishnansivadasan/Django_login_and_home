@@ -4,10 +4,11 @@
 {% block content %} 
 {%load static %}
 
-
-<table class="table table-bordered">
+<h5 class="ms-4">Hi {{name}}</h5>
+<table class="table table-bordered mx-4">
     <thead>
         <tr>
+            <th>Id</th>
             <th>User Name</th>
             <th>Is Staff</th>
             <th>Email</th>
@@ -19,6 +20,7 @@
     <tbody>
         {% for user in users %}
         <tr>
+            <td>{{ user.id }}</td>
             <td>{{ user.username }}</td>
             <td>{{ user.is_staff|yesno:"Yes,No" }}</td>
             <td>{{ user.email }}</td>
@@ -26,8 +28,15 @@
             <td>{{ user.date_joined }}</td>
             <td>{% if superstatus is True %}
                 <ul>
-                    <li>UP</li>
-                    <li>Del</li>
+                    <a href="{% url 'edit' user.id %}" class="btn custom-btn">
+                        <i class="fa-solid fa-pen-to-square fa-lg" style="color: #075c9c;"></i>
+                    </a>
+                    
+                    
+                    <a href="{% url 'delete' user.id %}">
+                        <i class="fa-solid fa-trash fa-lg" style="color: #d62e37;"></i>
+                    </a>
+                    
                 </ul>
                 {% else %}
                 <span>No actions available</span>
