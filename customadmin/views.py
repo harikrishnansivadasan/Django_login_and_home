@@ -37,14 +37,18 @@ def admin_home(request):
         username=request.session.get('username')
         user = User.objects.get(username=request.session.get('username'))
         superstatus=user.is_superuser
+        staffstatus=user.is_staff
+        if superstatus or staffstatus:
 
-        query=request.GET.get('q','')
-        if query:
-            users=User.objects.filter(username__icontains=query ).values('id','username', 'is_staff', 'email','is_superuser', 'date_joined')
+            query=request.GET.get('q','')
+            if query:
+                users=User.objects.filter(username__icontains=query ).values('id','username', 'is_staff', 'email','is_superuser', 'date_joined')
+            else:
+                users = User.objects.values('id','username', 'is_staff', 'email','is_superuser', 'date_joined')
+
+            return render(request, 'adminhome.html', {'users': users, 'superstatus': superstatus, 'name':username})
         else:
-            users = User.objects.values('id','username', 'is_staff', 'email','is_superuser', 'date_joined')
-
-        return render(request, 'adminhome.html', {'users': users, 'superstatus': superstatus, 'name':username})
+            return render(request, 'adminlogin.html')
     else:
         return render(request, 'adminlogin.html')
     

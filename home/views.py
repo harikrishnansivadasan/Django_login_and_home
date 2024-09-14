@@ -32,7 +32,10 @@ def Login(request):
 
 @never_cache
 def home(request): 
-    context1={'name':'Hari'} 
+    user1=request.session.get('username')
+    user=User.objects.get(email=user1)
+    context1=user.username 
+    print(context1)
     context=Characters.objects.all()
     if 'username' in request.session:   
       return render(request,'home.html',{'context':context, 'context1':context1})
