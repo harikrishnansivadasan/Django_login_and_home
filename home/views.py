@@ -1,3 +1,4 @@
+import re
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
@@ -41,27 +42,41 @@ def home(request):
       return render(request,'home.html',{'context':context, 'context1':context1})
     return redirect(Login)
 
+def password_strength(password):
+    if len(password) < 8:
+        return False,"Password must be at least 8 characters long"
+    if not re.search(r'[A-Za-z]',password):
+        return False,"Password must contain at least one letter"
+    if not re.search(r'[0-9]',password):
+        return False,"Password must contain at least one number"
+    return True,''
 
 def Signup(request):
     if 'username' in request.session:   
       return render(request,'home.html')
+    
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
         confirm_password = request.POST.get('confirmpassword')
 
+
         if password == confirm_password:
-            if not User.objects.filter(email=email).exists():
-                try:
-                    # Explicitly set username using the email
-                    user = User.objects.create_user(username=email, email=email, password=password)
-                    user.save()
-                    messages.success(request, 'User created successfully! Please log in.')
-                    return redirect('login')
-                except Exception as e:
-                    messages.error(request, 'Email is already registered.')
-            # else:
-            #     messages.error(request, 'Email is already registered.')
+            is_strong, message = password_strength(password)
+            if not is_strong:
+                messages.error(request,message)
+            else:
+                if not User.objects.filter(email=email).exists():
+                    try:
+                        # Explicitly set username using the email
+                        user = User.objects.create_user(username=email, email=email, password=password)
+                        user.save()
+                        messages.success(request, 'User created successfully! Please log in.')
+                        return redirect('login')
+                    except Exception as e:
+                        messages.error(request, 'Email is already registered.')
+                # else:
+                #     messages.error(request, 'Email is already registered.')
         else:
             messages.error(request, 'Passwords do not match.')
 

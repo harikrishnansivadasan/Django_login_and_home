@@ -10,6 +10,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link href="{% static 'css/login.css' %}" rel="stylesheet" >
     <title>Login Form</title>
+    <style>
+      .success {
+          color: green;
+      }
+      .error {
+          color: red;
+      }
+  </style>
   </head>
   <body style=" background-image: url({% static 'images/admin-bg-2.jpg' %});">
         <div class="container-fluid"  >
@@ -31,11 +39,11 @@
                 
                 </div>
                 {% if messages %}
-                <div>
-                  {% for message in messages %}
-                    <p style="color:rgb(246, 242, 242);">{{ message }}</p>
-                  {% endfor %}
-                </div>
+                  <div>
+                    {% for message in messages %}
+                      <p class="{% if message.tags == 'success' %}success{% elif message.tags == 'error' %}error{% endif %}">{{ message }}</p>
+                    {% endfor %}
+                  </div>
                 {% endif %}
               
                 <button type="submit" class="btn btn-danger mt-5">Login</button>

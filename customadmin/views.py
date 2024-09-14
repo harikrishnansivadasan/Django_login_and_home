@@ -18,17 +18,18 @@ def admin_login(request):
         name=user.username
         
         user = authenticate(request, username=email, password=password) or authenticate(request,email=email,password=password)
-        superstatus=user.is_superuser
-        staffstatus=user.is_staff
-        print(user,superstatus)
+        if user is not None:
+            superstatus=user.is_superuser
+            staffstatus=user.is_staff
+            print(user,superstatus)
         
-        if user is not None and (superstatus is True or staffstatus is True):
-            request.session['username']= email
-            
-            return redirect(admin_home)  # Redirect to the home page on successful login
-        else:
-            messages.error(request, 'Invalid email or password.')
-            return render(request, 'adminlogin.html')
+            if user is not None and (superstatus is True or staffstatus is True):
+                request.session['username']= email
+                
+                return redirect(admin_home)  # Redirect to the home page on successful login
+            else:
+                messages.error(request, 'No admin provision')
+                return render(request, 'adminlogin.html')
     return render(request,'adminlogin.html')
 
 @never_cache
@@ -48,7 +49,9 @@ def admin_home(request):
 
             return render(request, 'adminhome.html', {'users': users, 'superstatus': superstatus, 'name':username})
         else:
+            messages.error(request,'only staff and superuser have permission to login')
             return render(request, 'adminlogin.html')
+           
     else:
         return render(request, 'adminlogin.html')
     

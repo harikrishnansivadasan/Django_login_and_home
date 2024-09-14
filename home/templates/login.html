@@ -10,13 +10,22 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link href="{% static 'css/login.css' %}" rel="stylesheet" >
     <title>Login Form</title>
+    <style>
+      .success {
+          color: green;
+      }
+      .error {
+          color: red;
+      }
+  </style>
   </head>
   <body style=" background-image: url({% static 'images/577684.jpg' %});">
-        <div class="container-fluid"  >
-            <form class="mx-auto" method="post">
+        <div class="container-fluid col-md-12"  >
+          <div class="col-md-7 d-flex align-item-center" style="width: 100%;">
+            <form class="mx-auto col-md-6 col-lg-6" method="post">
               {% csrf_token %}
                 <h4 class="text-center text">Login</h4>
-                <div class="mb-3 mt-5">
+                <div class="mb-3 mt-5 w-90">
                   <label for="exampleInputEmail1" class="form-label text">Email Id</label>
                   <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
                 </div>
@@ -30,16 +39,18 @@
                 
                 
                 </div>
+
                 {% if messages %}
-                <div>
-                  {% for message in messages %}
-                    <p style="color:red;">{{ message }}</p>
-                  {% endfor %}
-                </div>
+                  <div>
+                    {% for message in messages %}
+                      <p class="{% if message.tags == 'success' %}success{% elif message.tags == 'error' %}error{% endif %}">{{ message }}</p>
+                    {% endfor %}
+                  </div>
                 {% endif %}
               
                 <button type="submit" class="btn btn-danger mt-5">Login</button>
               </form>
+            </div>
               
         </div>
 
